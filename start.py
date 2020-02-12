@@ -12,10 +12,18 @@ class Account:
     def show_info(self):
         print("Card number: ", self.__card_number, "\nAmount ", self.__amount, "\nCurrency ", self.__currancy)
 
-    def get_money(self):
-        print("Card number: ", self.__card_number, "\nAmount ", self.__amount, "\nCurrency ", self.__currancy)
+    def get_money(self, amount_minus):
+        if self.__amount >= amount_minus:
+            self.__amount = self.__amount - amount_minus
+            print("Card number: ", self.__card_number, "\nYou got money: ",  
+                amount_minus,"\nAccount balance: ", self.__amount, "\nCurrency ", self.__currancy)
+        else:
+            print("Not enough money in the account")
+            print("You can cash: ", self.__amount)
+        
 
-    def add_money(self):
+    def add_money(self, amount_plus):
+        self.__amount = self.__amount + amount_plus
         print("Card number: ", self.__card_number, "\nAmount ", self.__amount, "\nCurrency ", self.__currancy)
 
 exit = False
@@ -31,14 +39,10 @@ while not exit:
             credit_card.show_info()
         elif choise == 2:
             amount_minus = int(input("Enter money  get===> "))
-            amount = amount - amount_minus
-            credit_card = Account(card_number, amount, currancy)
-            credit_card.get_money()
+            credit_card.get_money(amount_minus)
         elif choise == 3:
             amount_plus = int(input("Enter money  add===> "))
-            amount = amount + amount_plus
-            credit_card = Account(card_number, amount, currancy)
-            credit_card.add_money()        
+            credit_card.add_money(amount_plus)        
         elif choise == 0:
             exit = True
         else:
